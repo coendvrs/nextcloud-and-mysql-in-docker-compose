@@ -2,7 +2,7 @@
 
 <img src="https://xibo.org.uk/img/svg/Home/icon_home_ubuntu_blue.svg" alt="Docker Logo" width='250' align="right">
 
-**Installation report for a linux installation in vagrant running docker compose and nextcloud**
+**Installation report for a Ubuntu installation within Vagrant running Docker Compose and NextCloud with a MySQL Database**
 
 ***download docker compose file***\
 <a href="https://github.com/farag2/Sophia-Script-for-Windows/releases/latest"><img src="https://raw.githubusercontent.com/farag2/Sophia-Script-for-Windows/master/img/SSdownloadbutton.svg" width=220px height=55px></a>
