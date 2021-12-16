@@ -58,9 +58,6 @@ If everything went correctly you should now have a fully operational Ubuntu Mach
 
 Open the terminal window and run the following command `sudo passwd root` and inputting your user password when prompted. You will then be prompted to create a new password for the root user account. Once you have finished this enter the following command and input your new password as requested. `su -`
 
-
-You should now have access to the root account, and will be able to grant root privileges to newly created user accounts.
-
 ## Docker Installation
 
 ## Docker Compose Installation
