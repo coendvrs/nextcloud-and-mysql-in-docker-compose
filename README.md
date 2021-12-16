@@ -56,6 +56,7 @@ Connecting to the Machine\
 ***
 
 ## Linux Machine Configuration
+If everything went correctly you should now have a fully operational Ubuntu Machine up and running within a command prompt or in powershell. Next we will do some basic configuration of the machine ie setting up passwords and allowing root access.
 
 ***
 
