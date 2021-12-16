@@ -53,8 +53,6 @@ Starting the newly created Machine\
 Connecting to the Machine\
 `> vagrant ssh`
 
-To again exit the machine use `$ exit`
-
 ***
 
 ## Linux Machine Configuration
