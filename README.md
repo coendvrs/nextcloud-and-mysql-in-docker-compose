@@ -39,10 +39,10 @@ Creating the Ubuntu Machine in Vagrant\
 `> vagrant box init ubuntu/bionic64`
 
 The machine has now been created, we will do some configuration within the newly created vagrant file to give it a static IP within the private network. Open the newly created vagrantfile in your favorite text editor and replace the content with the following lines.
-`Vagrant.configure("2") do |config|
+```Vagrant.configure("2") do |config|
    config.vm.box = "ubuntu/bionic64"
    config.vm.network "private_network", ip: "192.168.50.10"
-end`
+end```
 
 
 Starting the newly created Machine\
