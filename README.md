@@ -33,13 +33,13 @@ https://releases.hashicorp.com/vagrant/
 After your PC has booted up again we will be making the machine inside of a new folder. Start by making a folder at the desired location on your pc and open this in a terminal with `cd (path of folder)`. When you have navigated to this folder within a terminal execute the following commands.
 
 Installing Ubuntu\
-`> vagrant box add ubuntu/bionic64`\
+`> vagrant box add ubuntu/bionic64`
 
 Creating the Ubuntu Machine in Vagrant\
-`> vagrant box init ubuntu/bionic64`\
+`> vagrant box init ubuntu/bionic64`
 
 Starting the newly created Machine\
-`> vagrant up`\
+`> vagrant up`
 
 Connecting to the Machine\
 `> vagrant ssh`
