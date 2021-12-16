@@ -1,8 +1,8 @@
 # Docker Compose & Nextcloud
 
-<img src="https://xibo.org.uk/img/svg/Home/icon_home_ubuntu_blue.svg" alt="Docker Logo" width='250' align="right">
+<img src="https://xibo.org.uk/img/svg/Home/icon_home_ubuntu_blue.svg" alt="Docker Logo" width='300' align="right">
 
-**Installation report for an Ubuntu installation within Vagrant running Docker Compose and NextCloud with a MySQL Database**
+**Installation report for an Ubuntu installation within Vagrant running Docker Compose and NextCloud with a MySQL Database.**
 
 <a href="https://github.com/farag2/Sophia-Script-for-Windows/releases/latest"><img src="https://raw.githubusercontent.com/farag2/Sophia-Script-for-Windows/master/img/SSdownloadbutton.svg" width=220px height=55px></a>\
 ***download docker compose file***
