@@ -53,23 +53,23 @@ Starting the newly created Machine\
 Connecting to the Machine\
 `> vagrant ssh`
 
-***
+**
 
 ## Linux Machine Configuration
 If everything went correctly you should now have a fully operational Ubuntu Machine up and running within a command prompt or in powershell. Next we will do some basic configuration of the machine ie setting up passwords and allowing root access.
 
-***
+**
 
 ## Docker Installation
 
-***
+**
 
 ## Docker Compose Installation
 
-***
+**
 
 ## Nextcloud Installation
 
-***
+**
 
 ## MySQL Installation
