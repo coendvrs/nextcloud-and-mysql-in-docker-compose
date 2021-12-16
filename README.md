@@ -1,6 +1,6 @@
 # Docker Compose & Nextcloud
 
-<img src="https://xibo.org.uk/img/svg/Home/icon_home_ubuntu_blue.svg" alt="Docker Logo" width='300' align="right">
+<img src="https://xibo.org.uk/img/svg/Home/icon_home_ubuntu_blue.svg" alt="Docker Logo" width='250' align="right">
 
 **Installation report for an `Ubuntu` installation within `Vagrant` running `Docker` and `Docker Compose` and `NextCloud` with a `MySQL` Database.**
 
