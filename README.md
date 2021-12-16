@@ -53,9 +53,10 @@ Connecting to the Machine\
 `> vagrant ssh`
 
 ## Linux Machine Configuration
-If everything went correctly you should now have a fully operational Ubuntu Machine up and running within a command prompt or in powershell. This part covers basic post-installation tasks and basic system administration date and time configuration, managing users and groups, and gaining privileges.
+If everything went correctly you should now have a fully operational Ubuntu Machine up and running within a command prompt or in powershell. This part covers managing users and groups and gaining privileges.
 
-Open the terminal window and run the following command `sudo passwd root` and inputting your user password when prompted. You will then be prompted to create a new password for the root user account. Once you have finished this enter the following command and input your new password as requested. `su -`
+Open the terminal window and run the following command `sudo passwd root` and inputting your user password when prompted. 
+Once you have finished this enter the following command and input your new password as requested. `su -`
 
 We will now be creating a new user account with root privilges in order to not have to use `sudo` in front of every command we use. Do this with the below commands.
 
