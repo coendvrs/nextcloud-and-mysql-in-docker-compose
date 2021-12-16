@@ -46,7 +46,6 @@ Vagrant.configure("2") do |config|
 end
 ```
 
-
 Starting the newly created Machine\
 `> vagrant up`
 
@@ -57,6 +56,17 @@ Connecting to the Machine\
 If everything went correctly you should now have a fully operational Ubuntu Machine up and running within a command prompt or in powershell. This part covers basic post-installation tasks and basic system administration date and time configuration, managing users and groups, and gaining privileges.
 
 Open the terminal window and run the following command `sudo passwd root` and inputting your user password when prompted. You will then be prompted to create a new password for the root user account. Once you have finished this enter the following command and input your new password as requested. `su -`
+
+We will now be creating a new user account with root privilges in order to not have to use `sudo` in front of every command we use. Do this with the below commands.
+
+To create the new user we will use\
+`sudo adduser ubuntu_user`
+
+Next we add the user to the sudo system group\
+`sudo usermod -a -G sudo ubuntu_user`
+
+And finally we add root privilges in order to save time in the long run\
+`# gpasswd -a username sudo`
 
 ## Docker Installation
 
