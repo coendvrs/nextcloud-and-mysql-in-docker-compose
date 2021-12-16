@@ -8,7 +8,7 @@
 	&bull;
 	<a href="#vagrant-installation">Vagrant Installation</a>  
 	&bull;
-	<a href="#linux-machine-installation">Linux Machine Preparation</a>
+	<a href="#linux-user-installation">Linux User Preparation</a>
 	&bull;
 	<a href="#docker-installation">Docker Installation</a>
 	&bull;
@@ -52,7 +52,7 @@ Starting the newly created Machine\
 Connecting to the Machine\
 `> vagrant ssh`
 
-## Linux Machine Configuration
+## Linux User Configuration
 If everything went correctly you should now have a fully operational Ubuntu Machine up and running within a command prompt or in powershell. This part covers managing users and groups and gaining privileges.
 
 Open the terminal window and run the following command `sudo passwd root` and inputting your user password when prompted. 
