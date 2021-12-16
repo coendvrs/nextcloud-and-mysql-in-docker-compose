@@ -34,10 +34,13 @@ After your PC has booted up again we will be making the machine inside of a new 
 
 Installing Ubuntu\
 `> vagrant box add ubuntu/bionic64`\
+
 Creating the Ubuntu Machine in Vagrant\
 `> vagrant box init ubuntu/bionic64`\
+
 Starting the newly created Machine\
 `> vagrant up`\
+
 Connecting to the Machine\
 `> vagrant ssh`
 
