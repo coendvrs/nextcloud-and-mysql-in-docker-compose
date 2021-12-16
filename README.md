@@ -30,7 +30,7 @@ http://download.virtualbox.org/virtualbox/
 Second download Vagrant from Hashicorp, the machine will prompt to restart after the installation has finished.
 https://releases.hashicorp.com/vagrant/
 
-After your PC has booted up again we will be making the machine inside of a new folder. Start by making a folder at the desired location on your pc and open this in a terminal with `cd (path of folder)`. When you have navigated to this folder within a terminal execute the following commands.
+After your PC has booted up again we will be making the machine inside of a new folder. Start by making a folder at the desired location on your pc and open this in a terminal with `> cd (path of folder)`. When you have navigated to this folder within a terminal execute the following commands.
 
 Installing Ubuntu for Vagrant\
 `> vagrant box add ubuntu/bionic64`
