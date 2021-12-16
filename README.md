@@ -22,6 +22,20 @@
 ***
 
 ## Vagrant Installation
+For the installation we will be needing two things, vagrant itself and a copy of virtualbox or an alternative virtualization program. Here we will be using virtualbox for its out of the box compatability with vagrant and because it is free to download.
+
+Firstly download vitualbox from the following link, make sure to pick the highest possible version.
+http://download.virtualbox.org/virtualbox/
+
+Second download Vagrant from Hashicorp, the machine will prompt to restart after the installation has finished.
+https://releases.hashicorp.com/vagrant/
+
+After your PC has booted up again we will be making the machine inside of a new folder. Start by making a folder at the desired location on your pc and open this in a terminal with `cd (path of folder)`. When you have navigated to this folder within a terminal execute the following commands.
+
+`> vagrant box add ubuntu/bionic64
+> vagrant box init ubuntu/bionic64
+> vagrant up
+> vagrant ssh`
 
 ***
 
