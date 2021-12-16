@@ -56,13 +56,8 @@ Connecting to the Machine\
 ## Linux Machine Configuration
 If everything went correctly you should now have a fully operational Ubuntu Machine up and running within a command prompt or in powershell. This part covers basic post-installation tasks and basic system administration date and time configuration, managing users and groups, and gaining privileges.
 
-Open the terminal window and run the following command, inputting your user password when prompted
+Open the terminal window and run the following command `sudo passwd root` and inputting your user password when prompted. You will then be prompted to create a new password for the root user account. Once you have finished this enter the following command and input your new password as requested. `su -`
 
-`sudo passwd root`
-You will then be prompted to create a new password for the root user account. Once you've entered that twice, type this command into the terminal:
-
-`su -`
-and input your new password as requested.
 
 You should now have access to the root account, and will be able to grant root privileges to newly created user accounts.
 
