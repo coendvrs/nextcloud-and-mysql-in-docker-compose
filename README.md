@@ -57,10 +57,10 @@ If everything went correctly you should now have a fully operational Ubuntu Mach
 
 First make sure to set a password for the root account with `$ sudo passwd root` Then exit the machine with `$ exit` and shut it down with `> vagrant halt`
 
-Within the vagrant file add the following lines above the end argument. This will make it so when you use vagrant ssh you will login as root. Note that this solution is not intended to be used for a box that is accessible publicly.
+Within the vagrant file add the following lines above the end argument. This will make it so when you use vagrant ssh you will login as root. Note that this solution is not intended to be used for a box that is accessible publicly. Make sure to change the password to your own.
 ```
 config.ssh.username = 'root'
-config.ssh.password = 'vagrant'
+config.ssh.password = 'password'
 config.ssh.insert_key = 'true'
 ```
 
