@@ -13,6 +13,8 @@
 	<a href="#docker-compose-installation">Docker Compose Installation</a>
 	&bull;
 	<a href="#nextcloud-installation">Nextcloud Installation</a>
+	&bull;
+	<a href="#mysql-installation">MySQL Installation</a>
 </p>
 
 ***
@@ -69,3 +71,6 @@ Here we will be installing Nextcloud which consists of two parts, the nextcloud 
 When correctly installed we will be running nextcloud with `$ docker run -d -p 8080:80 nextcloud` If correct it shows a random string. Now on your host machine go to `vagrant_ip:8080` on a webbrowser and check if its working. You should see a login form of nextcloud.
 
 If you want the container to run whenever the machine starts type `$ docker update --restart unless-stopped CONTAINER_ID` where CONTAINER_ID is the same as is `$ docker ps`
+Now we can start configuring Nextcloud.
+
+## MySQL Installation
