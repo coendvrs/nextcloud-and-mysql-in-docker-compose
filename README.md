@@ -36,7 +36,7 @@ Installing Ubuntu for Vagrant\
 `> vagrant box add ubuntu/bionic64`
 
 Creating the Ubuntu Machine in Vagrant\
-`> vagrant box init ubuntu/bionic64`
+`> vagrant init ubuntu/bionic64`
 
 The machine has now been created, we will do some configuration within the newly created vagrant file to give it a static IP within the private network. Open the newly created vagrantfile in your favorite text editor and replace the content with the following lines. Change the ip if wanted.
 ```
