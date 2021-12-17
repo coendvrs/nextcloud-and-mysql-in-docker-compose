@@ -64,6 +64,6 @@ Lastly make the program executable with `$ chmod +x /usr/local/bin/docker-compos
 Docker-Compose should now be succesfully installed.
 
 ## Nextcloud Installation
-Here we will be installing Nextcloud which consists of two parts, the nextcloud container and the nextcloud database. First start by pulling the image of nextcloud with `docker pull nextcloud`
+Here we will be installing Nextcloud which consists of two parts, the nextcloud container and the nextcloud database. First start by pulling the image of nextcloud with `$ docker pull nextcloud` this should only take a few seconds depending on your hardware. When finished check if its correctly installed by running `docker images` which pulls up all the images installed for docker, it should say something like `nextcloud | latest | e848004dfd99 | 2 weeks ago | 969MB`
 
 
