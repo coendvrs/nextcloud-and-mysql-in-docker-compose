@@ -55,6 +55,8 @@ Now we want to start installing the needed packages to run our environment and w
 
 First we want to update our package list with `apt update` and after that we can install docker with `apt -y install docker.io`. I will be using combined commands in order to work more efficiently so for me this command will be `apt update && apt -y install docker.io`
 
+Docker should now be succesfully installed. In order to test it out you can use `docker --version`
+
 ## Docker Compose Installation
 
 ## Nextcloud Installation
