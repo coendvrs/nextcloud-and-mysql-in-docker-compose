@@ -8,7 +8,7 @@
 	&bull;
 	<a href="#vagrant-installation">Vagrant Installation</a>  
 	&bull;
-	<a href="#linux-user-installation">Linux User Preparation</a>
+	<a href="#linux-user-configuration">Linux User Configuration</a>
 	&bull;
 	<a href="#docker-installation">Docker Installation</a>
 	&bull;
