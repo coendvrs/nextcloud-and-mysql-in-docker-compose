@@ -60,7 +60,7 @@ Docker should now be succesfully installed. In order to test it out you can use 
 ## Docker Compose Installation
 Next we will be installing docker-compose, a tool that was developed to help define and share multi-container applications. Firstly go to the following link to find out what the latest version is of compose https://github.com/docker/compose/releases At the time of writing this is 2.2.2 or 2.20.2. 
 
-Now within your ubuntu machine download compose with the following command and replace x.xx.x with the correct version, in this case 2.20.2. 
+Now within your ubuntu machine download compose with the following command and replace x.xx.x with the correct version, in this case 2.20.2. \
 `curl -L "https://github.com/docker/compose/releases/download/x.xx.x/dockercompose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose`
 
 ## Nextcloud Installation
