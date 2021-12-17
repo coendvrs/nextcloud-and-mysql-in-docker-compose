@@ -38,7 +38,7 @@ Installing Ubuntu for Vagrant\
 Creating the Ubuntu Machine in Vagrant\
 `> vagrant init ubuntu/bionic64`
 
-The machine has now been created, we will do some configuration within the newly created vagrant file to give it a static IP within the private network. Open the newly created vagrantfile in your favorite text editor and replace the content with the following lines. Change the ip if wanted.
+The machine has now been created, we will do some configuration within the newly created vagrant file to give it a static IP within the private network. First make sure to set a password for the root account with `$ sudo passwd root` Then exit the machine with `$ exit` and close it with `> vagrant halt` Next open the newly created vagrantfile in your favorite text editor and replace the content with the following lines. Change the ip if wanted.
 ```
 Vagrant.configure("2") do |config|
    config.vm.box = "ubuntu/bionic64"
