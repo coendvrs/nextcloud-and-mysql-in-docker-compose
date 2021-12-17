@@ -53,21 +53,14 @@ Connecting to the Machine\
 `> vagrant ssh`
 
 ## Linux User Configuration
-If everything went correctly you should now have a fully operational Ubuntu Machine up and running within a command prompt or in powershell. This part covers managing users and groups and gaining privileges.
+If everything went correctly you should now have a fully operational Ubuntu Machine up and running within a command prompt or in powershell. This part covers automatically login in as root user.
 
-Open the terminal window and run the following command `sudo passwd root` and inputting your user password when prompted. 
-Once you have finished this enter the following command and input your new password as requested. `su -`
-
-We will now be creating a new user account with root privilges in order to not have to use `sudo` in front of every command we use. Do this with the below commands.
-
-To create the new user we will use\
-`sudo adduser ubuntu_user`
-
-Next we add the user to the sudo system group\
-`sudo usermod -a -G sudo ubuntu_user`
-
-And finally we add root privilges in order to save time in the long run\
-`# gpasswd -a username sudo`
+Within the vagrant file add the following lines above the end argument. This will make it so when you use vagrant ssh you will login as root. Note that this solution is not intended to be used for a box that is accessible publicly.
+```
+config.ssh.username = 'root'
+config.ssh.password = 'vagrant'
+config.ssh.insert_key = 'true'
+```
 
 ## Docker Installation
 
