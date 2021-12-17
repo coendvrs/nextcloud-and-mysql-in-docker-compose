@@ -13,8 +13,6 @@
 	<a href="#docker-compose-installation">Docker Compose Installation</a>
 	&bull;
 	<a href="#nextcloud-installation">Nextcloud Installation</a>
-	&bull;
-	<a href="#mysql-installation">MySQL Installation</a>
 </p>
 
 ***
@@ -66,5 +64,6 @@ Lastly make the program executable with `$ chmod +x /usr/local/bin/docker-compos
 Docker-Compose should now be succesfully installed.
 
 ## Nextcloud Installation
+Here we will be installing Nextcloud which consists of two parts, the nextcloud container and the nextcloud database. First start by pulling the image of nextcloud with `docker pull nextcloud`
 
-## MySQL Installation
+
