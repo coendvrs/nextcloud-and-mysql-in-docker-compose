@@ -8,8 +8,6 @@
 	&bull;
 	<a href="#vagrant-installation">Vagrant Installation</a>  
 	&bull;
-	<a href="#linux-user-configuration">Linux User Configuration</a>
-	&bull;
 	<a href="#docker-installation">Docker Installation</a>
 	&bull;
 	<a href="#docker-compose-installation">Docker Compose Installation</a>
@@ -51,18 +49,6 @@ Starting the newly created Machine\
 
 Connecting to the Machine\
 `> vagrant ssh`
-
-## Linux User Configuration
-If everything went correctly you should now have a fully operational Ubuntu Machine up and running within a command prompt or in powershell. This part covers automatically login in as root user.
-
-First make sure to set a password for the root account. If you aren't already in the machine do so with `> vagrant ssh` and when in the machine type `sudo su` which makes you the root user. Next type `sudo -i passwd` to change your password, you will be prompted to fill in your password. For this example we'll be using `vagrant` as our password.
-
-Within the vagrant file add the following lines above the end argument. This will make it so when you use vagrant ssh you will login as root. Note that this solution is not intended to be used for a box that is accessible publicly. Make sure to change the password to your own.
-```
-config.ssh.username = 'root'
-config.ssh.password = 'password'
-config.ssh.insert_key = 'true'
-```
 
 ## Docker Installation
 
