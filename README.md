@@ -62,15 +62,43 @@ Next we will be installing docker-compose, a tool that was developed to help def
 
 Now within your ubuntu machine download compose with the following command and replace x.xx.x with the correct version, in this case 1.29.2. `$ curl -L "https://github.com/docker/compose/releases/download/x.xx.x/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose`
 
-Lastly make the program executable with `$ chmod +x /usr/local/bin/docker-compose` and test if it works with `$ docker-compose --version`
+Lastly make the program executable with `$ chmod +x /usr/local/bin/docker-compose` and test if it works with `$ docker-compose --version` and make a file called `docker-compose.yml` and inside of it paste the following
+```
+version: '3.3'
+services:
+  db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'db'
+      # So you don't have to use root, but you can if you like
+      MYSQL_USER: 'user'
+      # You can use whatever password you like
+      MYSQL_PASSWORD: 'password'
+      # Password for root access
+      MYSQL_ROOT_PASSWORD: 'password'
+    ports:
+      # <Port exposed> : < MySQL Port running inside container>
+      - '3306:3306'
+    expose:
+      # Opens port 3306 on the container
+      - '3306'
+      # Where our data will be persisted
+    volumes:
+      - my-db:/var/lib/mysql
+# Names our volume
+volumes:
+  my-db:
+```
 Docker-Compose should now be succesfully installed.
 
 ## Nextcloud Installation
-Here we will be installing Nextcloud which consists of two parts, the nextcloud container and the nextcloud database. First start by pulling the image of nextcloud with `$ docker pull nextcloud` this should only take a few seconds depending on your hardware. When finished check if its correctly installed by running `$ docker ps` which pulls up all the containers installed for docker.
+Here we will be installing Nextcloud which consists of two parts, the nextcloud container and the nextcloud database. First start by pulling the image of nextcloud with `$ docker-compose pull nextcloud` this should only take a few seconds depending on your hardware. When finished check if its correctly installed by running `$ docker-compose ps` which pulls up all the containers installed for docker.
 
-When correctly installed we will be running nextcloud with `$ docker run -d -p 8080:80 nextcloud` If correct it shows a random string. Now on your host machine go to `vagrant_ip:8080` on a webbrowser and check if its working. You should see a login form of nextcloud.
+When correctly installed we will be running nextcloud with `$ docker-compose run -d -p 8080:80 nextcloud` If correct it shows a random string. Now on your host machine go to `vagrant_ip:8080` on a webbrowser and check if its working. You should see a login form of nextcloud.
 
-If you want the container to run whenever the machine starts type `$ docker update --restart unless-stopped CONTAINER_ID` where CONTAINER_ID is the same as is `$ docker ps`
+If you want the container to run whenever the machine starts type `$ docker-compose update --restart unless-stopped CONTAINER_ID` where CONTAINER_ID is the same as is `$ docker-compose ps`
 Now we can start configuring Nextcloud.
 
 ## MySQL Installation
+Before configuring Nextcloud we will be installing an external database instead of using the local SQLite database that comes with Nextcloud. For this we are using MySQL inside of a docker container. Start by pulling the container with `$ docker pull mysql`
