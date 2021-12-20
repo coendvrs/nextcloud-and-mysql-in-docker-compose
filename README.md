@@ -51,10 +51,9 @@ Connecting to the Machine\
 `> vagrant ssh`
 
 ## Docker Installation
-Now we want to start installing the needed packages to run our environment and we are starting with docker. In order to not have to use `$ sudo` for every command we are going into superuser mode. Make sure to first set a root password with `$ sudo passwd root` and fill in a new password if it prompts you too. By using the command `$ su -` we will login as root and now we can start installing docker.
+Now we want to start installing the needed packages to run our environment and we are starting with docker. In order to not have to use sudo for every command we are going into superuser mode. Make sure to first set a root password with `$ sudo passwd root` and fill in a new password if it prompts you too. By using the command `$ su -` we will login as root and now we can start installing docker.
 
-First we want to update our package list with `$ apt update` and after that we can install docker with `$ apt -y install docker.io`. I will be using combined commands in order to work more efficiently so for me this command will be `$ apt update && apt -y install docker.io`
-
+First we want to update our package list with `$ apt update` and after that we can install docker with `$ apt -y install docker.io`.
 Docker should now be succesfully installed. In order to test it out you can use `$ docker --version`
 
 ## Docker Compose Installation
