@@ -84,20 +84,24 @@ Because we want to put Nextcloud and other related services inside of containers
 
 Within this file we will be putting two services, these are MySQL and Nextcloud. For Nextcloud to work properly we want to add a database, we could use the SqlLite database Nextcloud provides internally but for the sake of it we will be using MySQL so add it into the YAML file.
 ```
-db:
-	image: mysql
-	container_name: nextcloud-mysql
-	networks:
-		- nextcloud_network
-	volumes:
-		- db:/var/lib/mysql
-		- /etc/localtime:/etc/localtime:ro
-	environment:
-	    - MYSQL_ROOT_PASSWORD=secret
-		- MYSQL_DATABASE=nextcloud
-	    - MYSQL_USER=nextcloud
-	    - MYSQL_PASSWORD=mysql
-	restart: unless-stopped
+version: '3'
+
+services:
+
+  db:
+    image: mysql
+    container_name: nextcloud-mysql
+    networks:
+      - nextcloud_network
+    volumes:
+      - db:/var/lib/mysql
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      - MYSQL_ROOT_PASSWORD=secret
+      - MYSQL_DATABASE=nextcloud
+      - MYSQL_USER=nextcloud
+      - MYSQL_PASSWORD=mysql
+    restart: unless-stopped
 ```
 MySQL's container is called db which is of course short for database, as you can see it's also part of `nextcloud_network` and other than that the code explains it self, again we added the `restart unless-stopped` in order to keep it running. We also added passwords, database names and a user.
 
@@ -108,8 +112,8 @@ app:
 	container_name: nextcloud-app
 	networks:
 		- nextcloud_network
-  ports:
-    - 1337:80
+	ports:
+		- 1337:80
 	depends_on:
 		- db
 	volumes:
@@ -155,10 +159,10 @@ services:
       - db:/var/lib/mysql
       - /etc/localtime:/etc/localtime:ro
     environment:
-	  - MYSQL_ROOT_PASSWORD=secret
-	  - MYSQL_DATABASE=nextcloud
-	  - MYSQL_USER=nextcloud
-	  - MYSQL_PASSWORD=mysql
+      - MYSQL_ROOT_PASSWORD=secret
+      - MYSQL_DATABASE=nextcloud
+      - MYSQL_USER=nextcloud
+      - MYSQL_PASSWORD=mysql
     restart: unless-stopped
 
   app:
@@ -166,8 +170,8 @@ services:
     container_name: nextcloud-app
     networks:
       - nextcloud_network
-	ports:
-  	- 1337:80
+    ports:
+      - 1337:80
     depends_on:
       - db
     volumes:
@@ -177,11 +181,11 @@ services:
       - ./app/data:/var/www/html/data
       - ./app/themes:/var/www/html/themes
       - /etc/localtime:/etc/localtime:ro
-	environment:
-	  - MYSQL_DATABASE=nextcloud
-	  - MYSQL_USER=nextcloud
-	  - MYSQL_PASSWORD=mysql
-	  - MYSQL_HOST=172.19.0.2:3306
+    environment:
+      - MYSQL_DATABASE=nextcloud
+      - MYSQL_USER=nextcloud
+      - MYSQL_PASSWORD=mysql
+      - MYSQL_HOST=172.19.0.2:3306
     restart: unless-stopped
 
 volumes:
