@@ -61,7 +61,7 @@ Next we will be installing docker-compose, a tool that was developed to help def
 
 Now within your ubuntu machine download compose with the following command and replace x.xx.x with the correct version, in this case 1.29.2. `$ curl -L "https://github.com/docker/compose/releases/download/x.xx.x/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose`
 
-Lastly make the program executable with `$ chmod +x /usr/local/bin/docker-compose` and test if it works with `$ docker-compose --version` and make a file called `docker-compose.yml` with `touch` command
+Lastly make the program executable with `$ chmod +x /usr/local/bin/docker-compose` and test if it works with `$ docker-compose --version` and make a compose file with `$ touch docker-compose.yml` command
 Docker-Compose should now be succesfully installed.
 
 ## Nextcloud Installation
