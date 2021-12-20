@@ -64,6 +64,29 @@ Now within your ubuntu machine download compose with the following command and r
 Lastly make the program executable with `$ chmod +x /usr/local/bin/docker-compose` and test if it works with `$ docker-compose --version` and make a compose file with `$ touch docker-compose.yml` command
 Docker-Compose should now be succesfully installed.
 
+Within the created yml or yaml file we want to paste the following text.
+```
+version: "3.9"
+
+services:
+  db:
+    image: mysql:8.0
+    volumes:
+      - db_data:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: somewordpress
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
+
+  nextcloud:
+    image: nextcloud:23.0.0
+    restart: always
+volumes:
+  db_data: {}
+```
+
 ## Nextcloud Installation
 Here we will be installing Nextcloud which consists of two parts, the nextcloud container and the nextcloud database. First start by pulling the image of nextcloud with `$ docker-compose pull nextcloud` this should only take a few seconds depending on your hardware. When finished check if its correctly installed by running `$ docker-compose ps` which pulls up all the containers installed for docker.
 
