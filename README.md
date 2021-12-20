@@ -6,15 +6,19 @@
 
 <p align="center">
 	&bull;
-	<a href="#vagrant-installation">Vagrant Installation</a>  
+	<a href="#vagrant-installation">Vagrant Installation</a>
 	&bull;
 	<a href="#docker-installation">Docker Installation</a>
 	&bull;
 	<a href="#docker-compose-installation">Docker Compose Installation</a>
 	&bull;
-	<a href="#nextcloud-installation">Nextcloud Installation</a>
+	<a href="#docker-container-configuration">Docker Container configuration</a>
 	&bull;
-	<a href="#mysql-installation">MySQL Installation</a>
+	<a href="#final-yaml-file">Final YAML File</a>
+	&bull;
+	<a href="#running-docker-compose">Running Docker-Compose</a>
+	&bull;
+	<a href="#final-result">Final Result</a>    
 </p>
 
 ***
@@ -51,50 +55,147 @@ Connecting to the Machine\
 `> vagrant ssh`
 
 ## Docker Installation
-Now we want to start installing the needed packages to run our environment and we are starting with docker. In order to not have to use sudo for every command we are going into superuser mode. Make sure to first set a root password with `$ sudo passwd root` and fill in a new password if it prompts you too. By using the command `$ su -` we will login as root and now we can start installing docker.
+Now we want to start installing the needed packages to run our environment and we are starting with docker.
+First we want to update our package list with `$ sudo apt update` and after that we want to get multiple prerequisite packages `$ sudo apt-get install curl gnupg2 apt-transport-https ca-certificates  software-properties-common` and after that we want to add the GPG keys and docker repositories and finally docker.
 
-First we want to update our package list with `$ apt update` and after that we can install docker with `$ apt -y install docker.io`.
-Docker should now be succesfully installed. In order to test it out you can use `$ docker --version`
+```
+$ sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+$ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+$ sudo apt update
+$ sudo apt install docker-ce
+```
+
+Docker should now be succesfully installed. In order to test it out you can use `$ sudo docker --version`.
 
 ## Docker Compose Installation
-Next we will be installing docker-compose, a tool that was developed to help define and share multi-container applications. Firstly go to the following link to find out what the latest version is of compose https://docs.docker.com/compose/release-notes/ At the time of writing this is 1.29.2. 
+Next we will be installing docker-compose, a tool that was developed to help define and share multi-container applications. Firstly go to the following link to find out what the latest version is of compose https://docs.docker.com/compose/release-notes/ At the time of writing this is 1.29.2.
 
-Now within your ubuntu machine download compose with the following command and replace x.xx.x with the correct version, in this case 1.29.2. `$ curl -L "https://github.com/docker/compose/releases/download/x.xx.x/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose`
+Now within your ubuntu machine download compose with the following command and replace x.xx.x with the correct version, in this case 1.29.2. `$ sudo curl -L "https://github.com/docker/compose/releases/download/x.xx.x/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose`.
 
-Lastly make the program executable with `$ chmod +x /usr/local/bin/docker-compose` and test if it works with `$ docker-compose --version` and make a compose file with `$ touch docker-compose.yml` command
-Docker-Compose should now be succesfully installed.
+Next apply executable permissions to the binary `$ sudo chmod +x /usr/local/bin/docker-compose` and test if it works with `$ docker-compose --version`
 
-Within the created yml or yaml file we want to paste the following text.
+Lastly create a new file called docker-compose.yaml with `$ sudo touch docker-compose.yaml`.\
+We are now almost ready to install images for docker.
+
+## Docker Container configuration
+Before we start defining services inside of the newly created YAML file we want to create a network so the containers can internally communicate with each other. We do this by creating a docker network with `$ sudo docker network create nextcloud_network`.
+
+Because we want to put Nextcloud and other related services inside of containers, we will define all of them inside of the YAML file and link them together. Now open the YAML file with `$ sudo nano docker-compose.yaml`
+
+Within this file we will be putting two services, these are MySQL and Nextcloud. For Nextcloud to work properly we want to add a database, we could use the SqlLite database Nextcloud provides internally but for the sake of it we will be using MySQL so add it into the YAML file.
 ```
-version: "3.9"
+db:
+	image: mysql
+	container_name: nextcloud-mysql
+	networks:
+		- nextcloud_network
+	volumes:
+		- db:/var/lib/mysql
+		- /etc/localtime:/etc/localtime:ro
+	environment:
+	    - MYSQL_ROOT_PASSWORD=secret
+		- MYSQL_DATABASE=nextcloud
+	    - MYSQL_USER=nextcloud
+	    - MYSQL_PASSWORD=mysql
+	restart: unless-stopped
+```
+MySQL's container is called db which is of course short for database, as you can see it's also part of `nextcloud_network` and other than that the code explains it self, again we added the `restart unless-stopped` in order to keep it running. We also added passwords, database names and a user.
+
+And finally we will be configuring the Nextcloud container.
+```
+app:
+	image: nextcloud:latest
+	container_name: nextcloud-app
+	networks:
+		- nextcloud_network
+  ports:
+    - 1337:80
+	depends_on:
+		- db
+	volumes:
+		- nextcloud:/var/www/html
+		- ./app/config:/var/www/html/config
+		- ./app/custom_apps:/var/www/html/custom_apps
+		- ./app/data:/var/www/html/data
+		- ./app/themes:/var/www/html/themes
+		- /etc/localtime:/etc/localtime:ro
+	environment:
+		- MYSQL_DATABASE=nextcloud
+		- MYSQL_USER=nextcloud
+		- MYSQL_PASSWORD=mysql
+		- MYSQL_HOST=172.19.0.2:3306
+	restart: unless-stopped
+```
+Nextcloud depends on the database. In order to make the data persistent while upgrading we used a named docker volume `nextcloud` similar to the volume named db for MySQL. Again it will always restart unless manually stopped.
+
+Lastly we want to add volumes for Nextcloud and MySQL for data persistence and we want to add the network.
+```
+volumes:
+  nextcloud:
+  db:
+
+networks:
+  nextcloud_network:
+```
+
+
+## Final YAML File
+If all is done correctly the final YAML file should look something like this:
+```
+version: '3'
 
 services:
-  db:
-    image: mysql:8.0
-    volumes:
-      - db_data:/var/lib/mysql
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: somewordpress
-      MYSQL_DATABASE: wordpress
-      MYSQL_USER: wordpress
-      MYSQL_PASSWORD: wordpress
 
-  nextcloud:
-    image: nextcloud:23.0.0
-    restart: always
+  db:
+    image: mysql
+    container_name: nextcloud-mysql
+    networks:
+      - nextcloud_network
+    volumes:
+      - db:/var/lib/mysql
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+	  - MYSQL_ROOT_PASSWORD=secret
+	  - MYSQL_DATABASE=nextcloud
+	  - MYSQL_USER=nextcloud
+	  - MYSQL_PASSWORD=mysql
+    restart: unless-stopped
+
+  app:
+    image: nextcloud:latest
+    container_name: nextcloud-app
+    networks:
+      - nextcloud_network
+	ports:
+  	- 1337:80
+    depends_on:
+      - db
+    volumes:
+      - nextcloud:/var/www/html
+      - ./app/config:/var/www/html/config
+      - ./app/custom_apps:/var/www/html/custom_apps
+      - ./app/data:/var/www/html/data
+      - ./app/themes:/var/www/html/themes
+      - /etc/localtime:/etc/localtime:ro
+	environment:
+	  - MYSQL_DATABASE=nextcloud
+	  - MYSQL_USER=nextcloud
+	  - MYSQL_PASSWORD=mysql
+	  - MYSQL_HOST=172.19.0.2:3306
+    restart: unless-stopped
+
 volumes:
-  db_data: {}
+  nextcloud:
+  db:
+
+networks:
+  nextcloud_network:
 ```
 
-## Nextcloud Installation
-Here we will be installing Nextcloud which consists of two parts, the nextcloud container and the nextcloud database. First start by pulling the image of nextcloud with `$ docker-compose pull nextcloud` this should only take a few seconds depending on your hardware. When finished check if its correctly installed by running `$ docker-compose ps` which pulls up all the containers installed for docker.
+## Running Docker-Compose
+Finally we will be running `docker-compose` from the terminal to create all of the containers. This should install MySQL, proxy, encryption and Nextcloud itself. We will do this by running `$ sudo docker-compose up -d`. If all has gone well we will be running `$ sudo docker ps -a` to see all the installed containers. You should see all of our containers here.
 
-When correctly installed we will be running nextcloud with `$ docker-compose run -d -p 8080:80 nextcloud` If correct it shows a random string. Now on your host machine go to `vagrant_ip:8080` on a webbrowser and check if its working. You should see a login form of nextcloud.
+Now make sure to run `$sudo docker inspect [MYSQL_CONTAINER_ID]` the container_id can be found with `$ sudo docker ps -a` With inspect you want to find the IP of the MySQL container which is most likely `172.19.0.2`. Now open up the YAML file again with `$ sudo nano docker-compose.yaml` and replace `MYSQL_HOST=0.0.0.0:3306` with `MYSQL_HOST=mysql_ip:3306` after this make sure to run `$ sudo docker-compose up -d` again.
 
-If you want the container to run whenever the machine starts type `$ docker-compose update --restart unless-stopped CONTAINER_ID` where CONTAINER_ID is the same as is `$ docker-compose ps`
-Now we can start configuring Nextcloud.
-
-## MySQL Installation
-Before configuring Nextcloud we will be installing an external database instead of using the local SQLite database that comes with Nextcloud. For this we are using MySQL inside of a docker container. Start by pulling the container with `$ docker pull mysql`
-
+## Final Result
+If all is done correctly you should now be able to go to `server_ip:1337` in a webbrowser on your host pc. You should see a setup page where you can make an administrator account for Nextcloud. Fill in a username and strong password in the given inputs and press the button. You now have an installation of Nextcloud with MySQL
