@@ -1,6 +1,6 @@
 # Nextcloud & MySQL in Docker Compose <img src="https://xibo.org.uk/img/svg/Home/icon_home_ubuntu_blue.svg" alt="Docker Logo" width='45' align="right"> <img src="https://www.healthiport.nl/mediadepot/18124d89e9e46/450/600/alfa-college.png" alt="alfa Logo" height='50' align="right">
 
-**Installation report for an `Ubuntu` installation within `Vagrant` running `Docker` and `Docker Compose` with `NextCloud` and a `MySQL` Database.**
+**Installation report for an `Ubuntu` installation within `Vagrant` running `Docker` and `Docker Compose` with `NextCloud` and a `MySQL` Database. Also contains the installation of `Git` and `Gitlab`. Made for a school assignment.**
 
 ***
 
@@ -18,7 +18,9 @@
 	&bull;
 	<a href="#running-docker-compose">Running Docker-Compose</a>
 	&bull;
-	<a href="#final-result">Final Result</a>    
+	<a href="#going-to-the-website">Going to the Website</a>
+	&bull;
+	<a href="#git-installation">Git Installation</a>   
 </p>
 
 ***
@@ -201,5 +203,5 @@ Finally we will be running `docker-compose` from the terminal to create all of t
 
 Now make sure to run `$sudo docker inspect [MYSQL_CONTAINER_ID]` the container_id can be found with `$ sudo docker ps -a` With inspect you want to find the IP of the MySQL container which is most likely `172.19.0.2`. Now open up the YAML file again with `$ sudo nano docker-compose.yaml` and replace `MYSQL_HOST=0.0.0.0:3306` with `MYSQL_HOST=mysql_ip:3306` after this make sure to run `$ sudo docker-compose up -d` again.
 
-## Final Result
+## Going to the Website
 If all is done correctly you should now be able to go to `server_ip:1337` in a webbrowser on your host pc. You should see a setup page where you can make an administrator account for Nextcloud. Fill in a username and strong password in the given inputs and press the button. You now have an installation of Nextcloud with MySQL
