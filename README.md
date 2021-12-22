@@ -214,4 +214,8 @@ Within our VM we will also be installing Git and going over the basics of workin
 Next we want to make a gitlab account by going to https://gitlab.com/users/sign_up where you can make a gitlab account for free.
 
 ## Adding SSH-Keys to Gitlab
-As soon as you have made an account on gitlab and have logged in we will be going to `settings` of your account. In here you will find `SSH Keys` in here we want to add our own public key which can be found on our VM. Within our VM we want to show the contents of the .ssh folder in our home directory with `$ ls -l ~/.ssh/`
+As soon as you have made an account on gitlab and have logged in we will be going to `settings` of your account. In here you will find `SSH Keys` in here we want to add our own public key which can be found on our VM. Within our VM we want to show the contents of the .ssh folder on our machine with `$ ls -l ~/.ssh/` If this doesnt contain a set of keys, one with .pub and one with you can make one with `ssh-keygen -t ed25519`. 
+
+We now want to read the public key, do this with `cat ~/.ssh/id_ed25519.pub`. Copy the output of this comment and paste in into the gitlab SSH settings.
+
+
