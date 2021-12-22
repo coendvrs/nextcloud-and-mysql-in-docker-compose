@@ -1,4 +1,4 @@
-# Docker Compose & Nextcloud <img src="https://xibo.org.uk/img/svg/Home/icon_home_ubuntu_blue.svg" alt="Docker Logo" width='45' align="right"> <img src="https://www.healthiport.nl/mediadepot/18124d89e9e46/450/600/alfa-college.png" alt="alfa Logo" height='50' align="right">
+# Nextcloud & MySQL in Docker Compose <img src="https://xibo.org.uk/img/svg/Home/icon_home_ubuntu_blue.svg" alt="Docker Logo" width='45' align="right"> <img src="https://www.healthiport.nl/mediadepot/18124d89e9e46/450/600/alfa-college.png" alt="alfa Logo" height='50' align="right">
 
 **Installation report for an `Ubuntu` installation within `Vagrant` running `Docker` and `Docker Compose` with `NextCloud` and a `MySQL` Database.**
 
