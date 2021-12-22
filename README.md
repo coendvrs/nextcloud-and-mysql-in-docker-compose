@@ -20,7 +20,9 @@
 	&bull;
 	<a href="#going-to-the-website">Going to the Website</a>
 	&bull;
-	<a href="#git-installation">Git Installation</a>   
+	<a href="#git-installation">Git Installation</a>
+	&bull;
+	<a href="#adding-ssh-keys-to-gitlab">Adding SSH-Keys to Gitlab</a>  
 </p>
 
 ***
@@ -204,4 +206,11 @@ Finally we will be running `docker-compose` from the terminal to create all of t
 Now make sure to run `$sudo docker inspect [MYSQL_CONTAINER_ID]` the container_id can be found with `$ sudo docker ps -a` With inspect you want to find the IP of the MySQL container which is most likely `172.19.0.2`. Now open up the YAML file again with `$ sudo nano docker-compose.yaml` and replace `MYSQL_HOST=0.0.0.0:3306` with `MYSQL_HOST=mysql_ip:3306` after this make sure to run `$ sudo docker-compose up -d` again.
 
 ## Going to the Website
-If all is done correctly you should now be able to go to `server_ip:1337` in a webbrowser on your host pc. You should see a setup page where you can make an administrator account for Nextcloud. Fill in a username and strong password in the given inputs and press the button. You now have an installation of Nextcloud with MySQL
+If all is done correctly you should now be able to go to `server_ip:1337` in a webbrowser on your host pc. You should see a setup page where you can make an administrator account for Nextcloud. Fill in a username and strong password in the given inputs and press the button. You now have an installation of Nextcloud with MySQL.
+
+## Git Installation
+Within our VM we will also be installing Git and going over the basics of working with Git on Gitlab. Before we can work with Git and Gitlab we will have to install Git itself. This can be done with apt install. First update our package list with `sudo apt update` and next install Git with `sudo apt install git`. When the installation has finished we can check this by retrieving the git version with `git --version`
+
+Next we want to make a gitlab account by going to https://gitlab.com/users/sign_up where you can make a gitlab account for free.
+
+## Adding SSH-Keys to Gitlab
